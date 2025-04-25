@@ -30,6 +30,10 @@ public class Reader {
                 Row headerRow = rowIterator.next();
                 int numberOfColumns = headerRow.getLastCellNum();
 
+                System.out.println("numberOfColumns:");
+
+                System.out.println(numberOfColumns);
+
                 for (int i = 0; i < numberOfColumns; i++) {
                     result.add(new ArrayList<>());
                 }
@@ -52,6 +56,8 @@ public class Reader {
                 }
             }
         } finally {
+            System.out.println("result:");
+            System.out.println(result);
             try {
                 if (workbook != null) {
                     workbook.close();

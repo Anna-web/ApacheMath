@@ -15,10 +15,23 @@ public class Scope implements Calculate {
     }
 
     public void calculate() {
-        DescriptiveStatistics stats = new DescriptiveStatistics();
+        ArrayList<DescriptiveStatistics> stats = new ArrayList<>();
+        int y = 0;
+
+        int numColumns = list.size();
+        for (int i = 0; i < numColumns; i++) {
+            stats.add(new DescriptiveStatistics());
+        }
+
         for (ArrayList<Double> doubles : list) {
-            doubles.forEach(stats::addValue);
-            result.add(stats.getMax() - stats.getMin());
+            for (int i = 0; i < doubles.size(); i++) {
+                stats.get(y).addValue(doubles.get(i));
+            }
+            y++;
+        }
+
+        for (DescriptiveStatistics stat : stats) {
+            result.add(stat.getMax() - stat.getMin());
         }
     }
 
